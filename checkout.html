@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/checkout_style.css">
+    <title>Finalização de Compras</title>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-right">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Livros</a></li>
+            <!-- Adiciona o ícone do carrinho e o link para a página de finalização de compras -->
+            <li><a href="checkout.html"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+        </div>
+    </nav>
+    <h1>Finalização de Compras</h1>
+
+    <div>
+        <h2>Itens no Carrinho</h2>
+        <ul id="cart-items-list">
+            <!-- Lista de itens no carrinho será exibida aqui -->
+        </ul>
+    </div>
+
+    <div>
+        <h2>Detalhes do Comprador</h2>
+        <!-- Formulário para os detalhes do comprador -->
+        <form id="checkout-form">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="address">Endereço de Entrega:</label>
+            <textarea id="address" name="address" required></textarea>
+
+            <button type="submit">Finalizar Compra</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Exibe os itens do carrinho na lista
+            let cartItemsList = document.getElementById('cart-items-list');
+
+            // Obtém os itens do carrinho da localStorage
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+            // Atualiza a lista de itens no carrinho
+            function updateCartItems() {
+                cartItemsList.innerHTML = "";
+                cartItems.forEach(function (item) {
+                    let listItem = document.createElement('li');
+
+                    // Criar uma imagem para o produto
+                    let productImage = document.createElement('img');
+                    productImage.src = item.image;
+                    productImage.alt = item.name;
+                    listItem.appendChild(productImage);
+
+                    // Criar um parágrafo para as informações do produto
+                    let productInfoParagraph = document.createElement('p');
+                    productInfoParagraph.textContent = `${item.name} - Preço: ${item.price} - Disponíveis: ${item.availability}`;
+                    listItem.appendChild(productInfoParagraph);
+
+                    cartItemsList.appendChild(listItem);
+                });
+            }
+
+
+            // Adiciona um ouvinte de evento para o formulário de finalização de compra
+            document.getElementById('checkout-form').addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                // Aqui você pode enviar os detalhes do comprador e itens do carrinho para um servidor ou processá-los conforme necessário
+
+                // Limpa o carrinho após a finalização da compra
+                cartItems = [];
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                updateCartItems();
+
+                alert("Compra finalizada com sucesso!");
+            });
+
+            // Exibe os itens do carrinho ao carregar a página
+            updateCartItems();
+        });
+    </script>
+</body>
+
+</html>
