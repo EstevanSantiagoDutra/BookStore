@@ -518,7 +518,7 @@
                                 let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
                                 // Função para adicionar item ao carrinho
-                                function addToCart(productId) {
+                                function addToCart(button) {
                                     let productContainer = button.closest('.image-holder');
                                     let productId = productContainer.dataset.productId; // Obtém o ID do produto
                                     let productName = productContainer.querySelector('img').alt;
@@ -542,6 +542,7 @@
                                         alert("Produto esgotado!");
                                     }
                                 }
+
 
                                 // Seleciona todos os botões de compra
                                 let buyButtons = document.querySelectorAll('.desc button');
