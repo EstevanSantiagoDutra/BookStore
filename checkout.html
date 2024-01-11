@@ -57,17 +57,16 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Exibe os itens do carrinho na lista
             let cartItemsList = document.getElementById('cart-items-list');
-
-            // Obtém os itens do carrinho da localStorage
             let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-            // Atualiza a lista de itens no carrinho
             function updateCartItems() {
                 cartItemsList.innerHTML = "";
                 cartItems.forEach(function (item) {
                     let listItem = document.createElement('li');
+
+                    // Adicione o ID do produto como um atributo de dados para identificação única
+                    listItem.dataset.productId = item.id;
 
                     // Criar uma imagem para o produto
                     let productImage = document.createElement('img');
@@ -83,21 +82,6 @@
                     cartItemsList.appendChild(listItem);
                 });
             }
-
-
-            // Adiciona um ouvinte de evento para o formulário de finalização de compra
-            document.getElementById('checkout-form').addEventListener('submit', function (event) {
-                event.preventDefault();
-
-                // Aqui você pode enviar os detalhes do comprador e itens do carrinho para um servidor ou processá-los conforme necessário
-
-                // Limpa o carrinho após a finalização da compra
-                cartItems = [];
-                localStorage.setItem('cartItems', JSON.stringify(cartItems));
-                updateCartItems();
-
-                alert("Compra finalizada com sucesso!");
-            });
 
             // Exibe os itens do carrinho ao carregar a página
             updateCartItems();

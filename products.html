@@ -519,12 +519,14 @@
                                 // Função para adicionar item ao carrinho
                                 function addToCart(button) {
                                     let productContainer = button.closest('.image-holder');
+                                    let productId = productContainer.dataset.productId; // Obtém o ID do produto
                                     let productName = productContainer.querySelector('img').alt;
                                     let productPrice = parseFloat(productContainer.querySelector('.desc').innerText.split('R$')[1].trim());
                                     let productAvailability = parseInt(productContainer.querySelector('.desc').innerText.split('Disponíveis:')[1].trim());
                                     let productImage = productContainer.querySelector('img').src;
 
                                     let product = {
+                                        id: productId,
                                         name: productName,
                                         price: productPrice,
                                         availability: productAvailability,
@@ -551,6 +553,7 @@
                                     });
                                 });
                             });
+
                         </script>
                     </div>
 
