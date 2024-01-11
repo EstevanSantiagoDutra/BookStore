@@ -520,8 +520,8 @@
                                 function addToCart(button) {
                                     let productContainer = button.closest('.image-holder');
                                     let productName = productContainer.querySelector('img').alt;
-                                    let productPrice = productContainer.querySelector('.desc').innerText.split(':')[1].trim();
-                                    let productAvailability = productContainer.querySelector('.desc').innerText.split(':')[2].trim();
+                                    let productPrice = parseFloat(productContainer.querySelector('.desc').innerText.split('R$')[1].trim());
+                                    let productAvailability = parseInt(productContainer.querySelector('.desc').innerText.split('Disponíveis:')[1].trim());
                                     let productImage = productContainer.querySelector('img').src;
 
                                     let product = {
@@ -531,9 +531,13 @@
                                         image: productImage
                                     };
 
-                                    cartItems.push(product);
-                                    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-                                    alert("Produto adicionado ao carrinho!");
+                                    if (productAvailability > 0) {
+                                        cartItems.push(product);
+                                        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                                        alert("Produto adicionado ao carrinho!");
+                                    } else {
+                                        alert("Produto esgotado!");
+                                    }
                                 }
 
                                 // Seleciona todos os botões de compra
