@@ -517,7 +517,7 @@
                                 let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
                                 // Função para adicionar item ao carrinho
-                                function addToCart(button) {
+                                function addToCart(productId) {
                                     let productContainer = button.closest('.image-holder');
                                     let productId = productContainer.dataset.productId; // Obtém o ID do produto
                                     let productName = productContainer.querySelector('img').alt;
@@ -553,6 +553,7 @@
                                     });
                                 });
                             });
+
                         </script>
                     </div>
 

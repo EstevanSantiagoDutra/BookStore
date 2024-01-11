@@ -57,35 +57,47 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            let cartItemsList = document.getElementById('cart-items-list');
+            // Array para armazenar os itens no carrinho
             let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-            function updateCartItems() {
-                cartItemsList.innerHTML = "";
-                cartItems.forEach(function (item) {
-                    let listItem = document.createElement('li');
+            // Função para adicionar item ao carrinho
+            function addToCart(productId) {
+                let productContainer = productId.closest('.image-holder'); // Use productId em vez de button
+                let productIdValue = productContainer.dataset.productId; // Altere para productIdValue para evitar conflito
+                let productName = productContainer.querySelector('img').alt;
+                let productPrice = parseFloat(productContainer.querySelector('.desc').innerText.split('R$')[1].trim());
+                let productAvailability = parseInt(productContainer.querySelector('.desc').innerText.split('Disponíveis:')[1].trim());
+                let productImage = productContainer.querySelector('img').src;
 
-                    // Adicione o ID do produto como um atributo de dados para identificação única
-                    listItem.dataset.productId = item.id;
+                let product = {
+                    id: productIdValue, // Altere para productIdValue
+                    name: productName,
+                    price: productPrice,
+                    availability: productAvailability,
+                    image: productImage
+                };
 
-                    // Criar uma imagem para o produto
-                    let productImage = document.createElement('img');
-                    productImage.src = item.image;
-                    productImage.alt = item.name;
-                    listItem.appendChild(productImage);
-
-                    // Criar um parágrafo para as informações do produto
-                    let productInfoParagraph = document.createElement('p');
-                    productInfoParagraph.textContent = `${item.name} - Preço: ${item.price} - Disponíveis: ${item.availability}`;
-                    listItem.appendChild(productInfoParagraph);
-
-                    cartItemsList.appendChild(listItem);
-                });
+                if (productAvailability > 0) {
+                    cartItems.push(product);
+                    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                    alert("Produto adicionado ao carrinho!");
+                } else {
+                    alert("Produto esgotado!");
+                }
             }
 
-            // Exibe os itens do carrinho ao carregar a página
-            updateCartItems();
+            // Seleciona todos os botões de compra
+            let buyButtons = document.querySelectorAll('.desc button');
+
+            // Adiciona um ouvinte de evento para cada botão de compra
+            buyButtons.forEach(function (button, index) {
+                button.addEventListener('click', function () {
+                    // Adiciona o produto ao carrinho
+                    addToCart(this);
+                });
+            });
         });
+
     </script>
 </body>
 
