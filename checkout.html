@@ -93,7 +93,7 @@
             buyButtons.forEach(function (button, index) {
                 button.addEventListener('click', function () {
                     // Adiciona o produto ao carrinho
-                    addToCart(this);
+                    addToCart(button.dataset.productId); // Passa o ID do produto diretamente
                 });
             });
         });
