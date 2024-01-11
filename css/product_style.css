@@ -1,0 +1,135 @@
+body {
+  margin: 0px;
+}
+
+.navbar {
+  display: flex;
+  background-color: rgb(52, 53, 54);
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  font-size: 20px;
+}
+
+.nav-right {
+  text-align: right;
+  float: right;
+}
+
+.nav-right li {
+  display: inline;
+  float: left;
+  padding-left: 15px;
+}
+
+.nav-right li a {
+  display: block;
+  padding: 8px;
+  text-decoration: none;
+  color: white;
+}
+
+.nav-right li ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+  background-color: rgb(51, 51, 51);
+}
+
+.nav-right li a:hover {
+  background-color: rgb(0, 0, 0);
+}
+
+.nav-right .active {
+  background-color: rgb(4, 170, 109);
+}
+
+.section-body {
+  padding-top: 30px;
+  padding-left: 15px;
+}
+
+.section-body h4 {
+  font-size: large;
+  margin-left: -30px
+}
+
+.vertical-nav {
+  padding-top: 10px;
+}
+
+.section-body ul {
+  list-style-type: none;
+  width: 8%;
+  background-color: rgba(42, 42, 129, 0.63);
+  position: fixed;
+  height: auto;
+  overflow: auto;
+  border-radius: 20px;
+}
+
+.section-body li a {
+  display: flex;
+  color: rgb(255, 255, 255);
+  padding: 5px 5px;
+  text-decoration: none;
+  margin-left: -30px;
+}
+
+.section-body li a.active {
+  background-color: rgb(248, 250, 249);
+  color: white;
+}
+
+.image-holder {
+  border: 1px solid rgb(204, 204, 204);
+  transition-duration: 200ms;
+  transition-timing-function: ease-out;
+}
+
+.image-holder:hover {
+  border: 1px solid rgb(119, 119, 119);
+  transform: scale(1.05, 1.05);
+}
+
+.gallery {
+  display: flex;
+  flex-flow: wrap;
+  gap: 10px 20px;
+}
+
+div.desc {
+  text-align: center;
+  width: 100%;
+}
+
+.desc i {
+  padding-left: 10px;
+  float: left !important;
+}
+
+.desc button {
+  margin-right: 10px;
+  margin-bottom: 5px;
+  float: right !important;
+}
+
+.gallery img {
+  height: 250px;
+  width: 200px;
+}
+
+.btn {
+  display: block;
+  border-radius: 5px;
+  color: white;
+  background-color: blue;
+  font-size: 20px;
+  text-decoration: none;
+  width: fit-content;
+  height: fit-content;
+  padding: 5px;
+}
+
+.btn:hover {}
