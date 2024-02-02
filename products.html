@@ -519,6 +519,7 @@
 
                                 // Função para adicionar item ao carrinho
                                 function addToCart(button) {
+                                    console.log("addToCart function called!");
                                     let productContainer = button.closest('.image-holder');
                                     let productId = productContainer.dataset.productId; // Obtém o ID do produto
                                     let productName = productContainer.querySelector('img').alt;
